@@ -63,7 +63,7 @@ data_split[2] = np.array(data_split[2])
 
 data_split_t = [[],[],[]]
 for i in range(0,3):
-    data_split_t[i] = scaler.inverse_transform(data_split[i])
+    data_split_t[i] = scaler.transform(data_split[i])
 
 data_split_t = np.array(data_split_t)
 
@@ -73,7 +73,7 @@ for i in range(0,3):
     xyz = KMeans(n_clusters=3).fit(data_split_t[i])
     labels_split[i] = xyz.labels_
     centers_split[i] = xyz.cluster_centers_
-    centers_split[i] = scaler.transform(centers_split[i])
+    centers_split[i] = scaler.inverse_transform(centers_split[i])
 
 print(centers_split)
 
